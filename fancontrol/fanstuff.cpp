@@ -187,7 +187,10 @@ bool FANCONTROL::HandleData(void) {
 		}
 	}
 
-	::SetDlgItemText(this->hwndDialog, 8101, templist2);
+	if (SlimDialog)
+		::SetDlgItemText(this->hwndDialog, 8101, templist2);
+	else
+		this->UpdateTempDisplay();
 
 	this->icontemp = this->State.Sensors[iMaxTemp];
 
