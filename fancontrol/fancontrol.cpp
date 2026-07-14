@@ -635,12 +635,14 @@ ULONG FANCONTROL::DlgProc(HWND hwnd, ULONG msg, WPARAM mp1, LPARAM mp2) {
 						(int)lplvcd->nmcd.dwItemSpec, 2,
 						tempStr, sizeof(tempStr));
 					int temp = atoi(tempStr);
+					// diagnostic: default color for all items to verify NM_CUSTOMDRAW chain
+					lplvcd->clrText = RGB(60, 120, 200);  // blue — proves handler is reached
 					if (temp >= this->IconLevels[2] && this->IconLevels[2] > 0)
-						lplvcd->clrText = RGB(255, 69, 0);
+						lplvcd->clrText = RGB(255, 69, 0);    // red-orange
 					else if (temp >= this->IconLevels[1] && this->IconLevels[1] > 0)
-						lplvcd->clrText = RGB(255, 165, 0);
+						lplvcd->clrText = RGB(255, 165, 0);   // orange
 					else if (temp >= this->IconLevels[0] && this->IconLevels[0] > 0)
-						lplvcd->clrText = RGB(210, 160, 0);
+						lplvcd->clrText = RGB(210, 160, 0);   // dark yellow
 					return CDRF_NEWFONT;
 				}
 				default:
